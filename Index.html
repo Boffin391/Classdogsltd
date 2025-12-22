@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLASS DOGS LTD - Premier Dog Breeds in Kenya</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="puppies for sale in Kenya, dogs for sale in Nairobi, Mombasa, Kisumu, Eldoret, Nakuru, Thika, Kitale, dog breeder Kenya, purebred puppies Kenya, pet adoption Kenya, Siberian Husky puppies Kenya, Golden Retriever puppies Kenya, Havanese puppies Kenya, reputable dog breeder Kenya, East African Kennel Club registered dogs, class dogs ltd">
+    <meta name="description" content="Find the best purebred puppies and dogs for sale in Kenya, featuring specialized breeds like Siberian Huskies, Golden Retrievers, Havanese, and more.">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #A34A00;
+            --secondary-color: #2D3748;
+            --bg-color: #F7FAFC;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+            overflow-x: hidden;
+        }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        
+        .slide-in-right {
+            animation: slideInRight 0.4s ease-out;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .vet-slider-container {
+            height: 400px;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+        .vet-slider-container::-webkit-scrollbar { display: none; }
+        
+        .vet-slide {
+            height: 100%;
+            scroll-snap-align: start;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="app-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Navigation -->
+        <header class="sticky top-0 z-50 bg-white shadow-sm py-4 flex justify-between items-center rounded-b-2xl px-6">
+            <div id="logo-trigger" class="cursor-pointer select-none" onclick="window.handleLogoClick()">
+                <h1 class="text-xl md:text-2xl font-bold flex items-center" style="color: var(--primary-color);">
+                    <i data-lucide="dog" class="mr-2"></i>
+                    CLASS DOGS LTD
+                </h1>
+            </div>
+            <nav class="flex space-x-2 md:space-x-6">
+                <button onclick="window.appNavigate('home')" class="nav-btn px-3 py-2 rounded-lg text-gray-600 hover:bg-orange-50 hover:text-orange-600 font-semibold transition">Home</button>
+                <button onclick="window.appNavigate('breeds')" class="nav-btn px-3 py-2 rounded-lg text-gray-600 hover:bg-orange-50 hover:text-orange-600 font-semibold transition">Breeds</button>
+                <button id="nav-admin-btn" onclick="window.appNavigate('admin')" class="nav-btn hidden px-3 py-2 rounded-lg text-red-600 border border-red-100 font-bold transition">Admin</button>
+            </nav>
+        </header>
+
+        <!-- Dynamic Content Area -->
+        <main id="main-content" class="py-8 min-h-[70vh]">
+            <!-- Injected via JavaScript -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white rounded-t-3xl p-8 md:p-12 mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold text-orange-400 mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://t.me/dogsinkenya" target="_blank" class="hover:text-orange-400 transition"><i data-lucide="send"></i></a>
+                        <a href="https://www.instagram.com/classdogsltd" target="_blank" class="hover:text-orange-400 transition"><i data-lucide="instagram"></i></a>
+                        <a href="https://www.facebook.com" target="_blank" class="hover:text-orange-400 transition"><i data-lucide="facebook"></i></a>
+                    </div>
+                    <p class="mt-6 text-gray-400 text-sm flex items-center">
+                        <i data-lucide="clock" class="w-4 h-4 mr-2"></i> 8:00 AM - 6:00 PM Daily
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-orange-400 mb-4">Our Location</h3>
+                    <p class="text-gray-300 mb-4">Nairobi, Kenya</p>
+                    <a href="tel:+254713844025" class="inline-flex items-center bg-orange-600 px-6 py-3 rounded-full font-bold hover:bg-orange-700 transition">
+                        <i data-lucide="phone" class="mr-2"></i> Call Now
+                    </a>
+                </div>
+                <div class="text-sm text-gray-400">
+                    <div class="bg-gray-800 p-4 rounded-xl border-l-4 border-orange-500 mb-4">
+                        <i data-lucide="award" class="inline w-4 h-4 mr-1"></i>
+                        Parents registered with the East African Kennel Club.
+                    </div>
+                    <p>© 2025 CLASS DOGS LTD. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Custom Modal System -->
+        <div id="custom-modal" class="fixed inset-0 bg-black/60 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm">
+            <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden transform transition-all scale-95 opacity-0" id="modal-content">
+                <div class="p-6">
+                    <h3 id="modal-title" class="text-xl font-bold mb-2"></h3>
+                    <div id="modal-body" class="text-gray-600 mb-6 max-h-[60vh] overflow-y-auto"></div>
+                    <div id="modal-actions" class="flex justify-end space-x-3">
+                        <!-- Actions injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIG & CONSTANTS ---
+        const CONFIG = {
+            bucketUrl: "https://storage.googleapis.com/YOUR_BUCKET_NAME/", // Replace with actual bucket
+            adminEmail: "trumph191@gmail.com",
+            adminPassword: "Classdogs2022",
+            logoTriggerCount: 5
+        };
+
+        const BREEDS_LIST = [
+            'Airedale Terrier', 'Akita', 'Alaskan Malamute', 'Beagle', 'Boerboel', 'Boxer', 'Bulldog', 
+            'Chihuahua', 'Chow Chow', 'Dachshund', 'Doberman', 'German Shepherd', 'Golden Retriever', 
+            'Great Dane', 'Havanese', 'Labrador', 'Maltese', 'Pomeranian', 'Poodle', 'Pug', 'Rottweiler', 
+            'Siberian Husky', 'Shih Tzu', 'Tibetan Mastiff'
+        ].sort();
+
+        // --- STATE MANAGEMENT ---
+        let state = {
+            breeds: [],
+            vetSlides: [],
+            galleryImages: [],
+            galleryBg: '#F7FAFC',
+            isAdmin: false,
+            logoClicks: 0
+        };
+
+        // --- HELPERS ---
+        const resolveImg = (src) => {
+            if (!src) return "https://placehold.co/800x600?text=No+Image";
+            if (src.startsWith('http') || src.startsWith('data:')) return src;
+            return CONFIG.bucketUrl + src;
+        };
+
+        const save = () => {
+            localStorage.setItem('cd_breeds', JSON.stringify(state.breeds));
+            localStorage.setItem('cd_vet', JSON.stringify(state.vetSlides));
+            localStorage.setItem('cd_gallery', JSON.stringify(state.galleryImages));
+            localStorage.setItem('cd_gallery_bg', state.galleryBg);
+        };
+
+        const load = () => {
+            state.breeds = JSON.parse(localStorage.getItem('cd_breeds')) || [
+                { id: '1', breed: 'Golden Retriever', description: 'Friendly and intelligent.', price: 120000, isNegotiable: true, images: ['https://placehold.co/800x600?text=Golden'], age: '10 weeks', gender: 'Male', purity: 'Purebred' }
+            ];
+            state.vetSlides = JSON.parse(localStorage.getItem('cd_vet')) || [
+                { id: 'v1', url: 'https://placehold.co/800x400?text=Vet+Care+1', alt: 'Routine Vaccination' }
+            ];
+            state.galleryImages = JSON.parse(localStorage.getItem('cd_gallery')) || [
+                { id: 'g1', url: 'https://placehold.co/800x600?text=Client+1', caption: 'Happy family with their new pup' }
+            ];
+            state.galleryBg = localStorage.getItem('cd_gallery_bg') || '#F7FAFC';
+        };
+
+        // --- UI CORE ---
+        window.showModal = (title, body, actions = []) => {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerHTML = body;
+            
+            const actionContainer = document.getElementById('modal-actions');
+            actionContainer.innerHTML = '<button onclick="window.closeModal()" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg">Close</button>';
+            
+            actions.forEach(a => {
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-2 rounded-lg text-white ${a.color || 'bg-orange-600'}`;
+                btn.innerText = a.text;
+                btn.onclick = () => { a.fn(); window.closeModal(); };
+                actionContainer.prepend(btn);
+            });
+
+            modal.classList.replace('hidden', 'flex');
+            setTimeout(() => content.classList.replace('scale-95', 'scale-100'), 10);
+            setTimeout(() => content.classList.replace('opacity-0', 'opacity-100'), 10);
+        };
+
+        window.closeModal = () => {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            content.classList.replace('scale-100', 'scale-95');
+            content.classList.replace('opacity-100', 'opacity-0');
+            setTimeout(() => modal.classList.replace('flex', 'hidden'), 200);
+        };
+
+        window.handleLogoClick = () => {
+            state.logoClicks++;
+            if (state.logoClicks >= CONFIG.logoTriggerCount) {
+                document.getElementById('nav-admin-btn').classList.remove('hidden');
+                window.showModal("Admin Activated", "The Admin panel link is now visible in the navigation bar.");
+                state.logoClicks = 0;
+            }
+        };
+
+        // --- NAVIGATION ---
+        window.appNavigate = (route) => {
+            window.location.hash = route;
+            const main = document.getElementById('main-content');
+            main.innerHTML = '';
+            main.className = 'py-8 min-h-[70vh] slide-in-right';
+
+            // Active Tab UI
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('bg-orange-100', 'text-orange-700'));
+
+            if (route.startsWith('details/')) {
+                const id = route.split('/')[1];
+                renderDetails(id);
+            } else {
+                const btn = document.querySelector(`button[onclick="window.appNavigate('${route}')"]`);
+                if (btn) btn.classList.add('bg-orange-100', 'text-orange-700');
+
+                switch(route) {
+                    case 'admin': renderAdmin(); break;
+                    case 'breeds': renderBreedsList(); break;
+                    case 'home': 
+                    default: renderHome(); break;
+                }
+            }
+            lucide.createIcons();
+            window.scrollTo(0, 0);
+        };
+
+        // --- PAGE RENDERS ---
+        const renderHome = () => {
+            const main = document.getElementById('main-content');
+            main.innerHTML = `
+                <section class="bg-gradient-to-br from-orange-50 to-white p-8 md:p-16 rounded-3xl mb-12 border border-orange-100">
+                    <div class="md:flex items-center gap-12">
+                        <div class="md:w-1/2">
+                            <h2 class="text-4xl md:text-6xl font-playfair font-black text-gray-900 mb-6 leading-tight">
+                                Find Your <span class="text-orange-600">Perfect Companion</span> in Kenya
+                            </h2>
+                            <p class="text-lg text-gray-600 mb-8">We offer the finest purebred lines with documented health checks and East African Kennel Club registration.</p>
+                            <button onclick="window.appNavigate('breeds')" class="bg-orange-600 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-orange-200 transition flex items-center">
+                                <i data-lucide="paw-print" class="mr-2"></i> Browse Our Puppies
+                            </button>
+                        </div>
+                        <div class="md:w-1/2 mt-12 md:mt-0">
+                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=800" class="rounded-2xl shadow-2xl" alt="Golden Retriever">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-16">
+                    <h3 class="text-2xl font-bold mb-8 text-center">Happy Client Stories</h3>
+                    <div class="p-8 rounded-3xl transition-colors duration-500" style="background-color: ${state.galleryBg}">
+                        <div id="gallery-container" class="relative overflow-hidden rounded-2xl h-96">
+                            ${state.galleryImages.map((img, i) => `
+                                <div class="gallery-slide absolute inset-0 transition-opacity duration-1000 ${i === 0 ? 'opacity-100' : 'opacity-0'}">
+                                    <img src="${resolveImg(img.url)}" class="w-full h-full object-cover">
+                                    <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+                                        <p class="text-lg font-bold">${img.caption}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                        <h3 class="text-xl font-bold mb-4">Professional Vet Care</h3>
+                        <div class="vet-slider-container rounded-xl">
+                            ${state.vetSlides.map(s => `
+                                <div class="vet-slide relative">
+                                    <img src="${resolveImg(s.url)}" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
+                                        <p class="text-white font-bold text-center">${s.alt}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                        <h3 class="text-xl font-bold mb-4">Why Choose Us?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start"><i data-lucide="check-circle" class="text-green-500 mr-2 shrink-0"></i> Health Guaranteed Pups</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="text-green-500 mr-2 shrink-0"></i> Certified Breeders</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="text-green-500 mr-2 shrink-0"></i> Ongoing Support</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="text-green-500 mr-2 shrink-0"></i> Nationwide Delivery</li>
+                        </ul>
+                    </div>
+                </section>
+            `;
+            initSliders();
+        };
+
+        const renderBreedsList = () => {
+            const main = document.getElementById('main-content');
+            main.innerHTML = `
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl font-bold">Our Available Breeds</h2>
+                    <p class="text-gray-500">Purebred excellence delivered to your home.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    ${state.breeds.map(b => `
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all group">
+                            <div class="h-64 overflow-hidden relative">
+                                <img src="${resolveImg(b.images[0])}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                                ${b.isNegotiable ? '<span class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">Negotiable</span>' : ''}
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">${b.breed}</h3>
+                                <p class="text-gray-600 text-sm mb-4 line-clamp-2">${b.description}</p>
+                                <div class="flex justify-between items-center pt-4 border-t">
+                                    <span class="text-xl font-black text-orange-600">KES ${b.price.toLocaleString()}</span>
+                                    <button onclick="window.appNavigate('details/${b.id}')" class="text-sm font-bold text-gray-900 flex items-center hover:text-orange-600">
+                                        Details <i data-lucide="arrow-right" class="ml-1 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        };
+
+        const renderDetails = (id) => {
+            const b = state.breeds.find(x => x.id === id);
+            if (!b) return renderBreedsList();
+
+            document.getElementById('main-content').innerHTML = `
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-2">
+                        <div class="p-6 bg-gray-50">
+                            <div class="rounded-2xl overflow-hidden h-[500px] mb-4">
+                                <img id="hero-img" src="${resolveImg(b.images[0])}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                ${b.images.map(img => `
+                                    <button onclick="document.getElementById('hero-img').src='${resolveImg(img)}'" class="h-20 rounded-lg overflow-hidden border-2 border-transparent hover:border-orange-500 transition">
+                                        <img src="${resolveImg(img)}" class="w-full h-full object-cover">
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="p-8 md:p-12">
+                            <button onclick="window.appNavigate('breeds')" class="text-gray-400 hover:text-gray-900 mb-6 flex items-center"><i data-lucide="chevron-left" class="mr-1"></i> Back</button>
+                            <h2 class="text-4xl font-black mb-4">${b.breed}</h2>
+                            <div class="flex flex-wrap gap-4 mb-8">
+                                <span class="bg-orange-50 text-orange-700 px-4 py-2 rounded-xl text-sm font-bold flex items-center"><i data-lucide="clock" class="w-4 h-4 mr-2"></i> ${b.age}</span>
+                                <span class="bg-orange-50 text-orange-700 px-4 py-2 rounded-xl text-sm font-bold flex items-center"><i data-lucide="user" class="w-4 h-4 mr-2"></i> ${b.gender}</span>
+                                <span class="bg-orange-50 text-orange-700 px-4 py-2 rounded-xl text-sm font-bold flex items-center"><i data-lucide="award" class="w-4 h-4 mr-2"></i> ${b.purity}</span>
+                            </div>
+                            <p class="text-gray-600 text-lg mb-8 leading-relaxed">${b.description}</p>
+                            <div class="bg-gray-50 p-6 rounded-2xl mb-8 flex justify-between items-center">
+                                <div>
+                                    <p class="text-sm text-gray-500">Price</p>
+                                    <p class="text-3xl font-black text-gray-900">KES ${b.price.toLocaleString()}</p>
+                                </div>
+                                ${b.isNegotiable ? '<span class="text-green-600 font-bold">Price Negotiable</span>' : ''}
+                            </div>
+                            <a href="https://wa.me/254713844025?text=Hi, I am interested in your ${b.breed}" target="_blank" class="block w-full text-center bg-green-500 text-white py-4 rounded-2xl font-bold shadow-lg hover:bg-green-600 transition">
+                                <i data-lucide="message-circle" class="inline-block mr-2"></i> Contact on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        };
+
+        // --- ADMIN PANEL ---
+        const renderAdmin = () => {
+            if (!state.isAdmin) {
+                renderLogin();
+                return;
+            }
+
+            document.getElementById('main-content').innerHTML = `
+                <div class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+                    <div class="flex justify-between items-center mb-8 pb-6 border-b">
+                        <h2 class="text-2xl font-black">Admin Dashboard</h2>
+                        <button onclick="state.isAdmin=false; renderHome();" class="text-red-500 font-bold">Logout</button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                        <div class="lg:col-span-1 space-y-2">
+                            <button onclick="window.switchTab('breeds')" class="adm-tab w-full text-left p-4 rounded-xl font-bold bg-orange-500 text-white">Breeds</button>
+                            <button onclick="window.switchTab('site')" class="adm-tab w-full text-left p-4 rounded-xl font-bold text-gray-600 hover:bg-gray-50">Site Settings</button>
+                            <button onclick="window.switchTab('gallery')" class="adm-tab w-full text-left p-4 rounded-xl font-bold text-gray-600 hover:bg-gray-50">Gallery</button>
+                        </div>
+                        <div id="admin-view" class="lg:col-span-3 bg-gray-50 p-8 rounded-2xl min-h-[500px]">
+                            <!-- Tab Content -->
+                        </div>
+                    </div>
+                </div>
+            `;
+            window.switchTab('breeds');
+        };
+
+        const renderLogin = () => {
+            document.getElementById('main-content').innerHTML = `
+                <div class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl mt-12">
+                    <h2 class="text-2xl font-bold mb-6 text-center">Admin Login</h2>
+                    <input type="email" id="adm-email" placeholder="Email" class="w-full p-4 border rounded-xl mb-4">
+                    <input type="password" id="adm-pass" placeholder="Password" class="w-full p-4 border rounded-xl mb-6">
+                    <button onclick="window.doLogin()" class="w-full bg-orange-600 text-white py-4 rounded-xl font-bold">Login</button>
+                </div>
+            `;
+        };
+
+        window.doLogin = () => {
+            const e = document.getElementById('adm-email').value;
+            const p = document.getElementById('adm-pass').value;
+            if (e === CONFIG.adminEmail && p === CONFIG.adminPassword) {
+                state.isAdmin = true;
+                renderAdmin();
+            } else {
+                window.showModal("Error", "Invalid credentials provided.");
+            }
+        };
+
+        window.switchTab = (tab) => {
+            document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('bg-orange-500', 'text-white'));
+            const container = document.getElementById('admin-view');
+            
+            if (tab === 'breeds') {
+                container.innerHTML = `
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-xl">Manage Breeds</h3>
+                        <button onclick="window.openAddBreed()" class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold">Add New</button>
+                    </div>
+                    <div class="space-y-3">
+                        ${state.breeds.map(b => `
+                            <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm">
+                                <span class="font-bold">${b.breed} - KES ${b.price}</span>
+                                <div class="flex space-x-2">
+                                    <button onclick="window.openEditBreed('${b.id}')" class="text-blue-500 p-2"><i data-lucide="edit-2"></i></button>
+                                    <button onclick="window.delBreed('${b.id}')" class="text-red-500 p-2"><i data-lucide="trash-2"></i></button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (tab === 'site') {
+                container.innerHTML = `
+                    <h3 class="font-bold text-xl mb-6">Vet Care Slides</h3>
+                    <div class="space-y-4">
+                        ${state.vetSlides.map(s => `
+                            <div class="bg-white p-4 rounded-xl flex gap-4">
+                                <img src="${resolveImg(s.url)}" class="w-20 h-20 object-cover rounded-lg">
+                                <div class="flex-grow">
+                                    <input onchange="window.updVet('${s.id}', 'alt', this.value)" value="${s.alt}" class="w-full p-2 border rounded mb-2">
+                                    <button onclick="window.delVet('${s.id}')" class="text-red-500 text-sm font-bold">Remove</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                        <button onclick="window.addVet()" class="w-full p-4 border-2 border-dashed rounded-xl text-gray-400">+ Add Slide</button>
+                    </div>
+                `;
+            } else if (tab === 'gallery') {
+                container.innerHTML = `
+                    <h3 class="font-bold text-xl mb-4">Client Gallery</h3>
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold mb-2">Section Background</label>
+                        <input type="color" onchange="state.galleryBg=this.value; save();" value="${state.galleryBg}" class="w-full h-10 rounded-lg">
+                    </div>
+                    <div class="space-y-4">
+                        ${state.galleryImages.map(g => `
+                            <div class="bg-white p-4 rounded-xl flex gap-4">
+                                <img src="${resolveImg(g.url)}" class="w-20 h-20 object-cover rounded-lg">
+                                <div class="flex-grow">
+                                    <input onchange="window.updGal('${g.id}', 'caption', this.value)" value="${g.caption}" class="w-full p-2 border rounded mb-2" placeholder="Caption">
+                                    <button onclick="window.delGal('${g.id}')" class="text-red-500 text-sm font-bold">Remove</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                        <button onclick="window.addGal()" class="w-full p-4 border-2 border-dashed rounded-xl text-gray-400">+ Add Image</button>
+                    </div>
+                `;
+            }
+            lucide.createIcons();
+        };
+
+        // --- CRUD LOGIC ---
+        window.delBreed = (id) => {
+            state.breeds = state.breeds.filter(x => x.id !== id);
+            save();
+            window.switchTab('breeds');
+        };
+
+        window.openAddBreed = () => {
+            const body = `
+                <div class="space-y-4">
+                    <select id="b-name" class="w-full p-3 border rounded-xl">
+                        ${BREEDS_LIST.map(b => `<option value="${b}">${b}</option>`).join('')}
+                    </select>
+                    <textarea id="b-desc" placeholder="Description" class="w-full p-3 border rounded-xl h-24"></textarea>
+                    <input type="number" id="b-price" placeholder="Price (KES)" class="w-full p-3 border rounded-xl">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="b-age" placeholder="Age (e.g. 10 weeks)" class="w-full p-3 border rounded-xl">
+                        <select id="b-gender" class="w-full p-3 border rounded-xl"><option>Male</option><option>Female</option></select>
+                    </div>
+                    <input type="text" id="b-imgs" placeholder="Images (comma separated filenames)" class="w-full p-3 border rounded-xl">
+                </div>
+            `;
+            window.showModal("Add Breed", body, [{
+                text: "Save",
+                fn: () => {
+                    const breed = {
+                        id: Date.now().toString(),
+                        breed: document.getElementById('b-name').value,
+                        description: document.getElementById('b-desc').value,
+                        price: parseInt(document.getElementById('b-price').value),
+                        age: document.getElementById('b-age').value,
+                        gender: document.getElementById('b-gender').value,
+                        images: document.getElementById('b-imgs').value.split(',').map(s => s.trim()),
+                        purity: 'Purebred',
+                        isNegotiable: true
+                    };
+                    state.breeds.push(breed);
+                    save();
+                    window.switchTab('breeds');
+                }
+            }]);
+        };
+
+        window.openEditBreed = (id) => {
+            const b = state.breeds.find(x => x.id === id);
+            const body = `
+                <div class="space-y-4">
+                    <input type="number" id="eb-price" value="${b.price}" class="w-full p-3 border rounded-xl">
+                    <textarea id="eb-desc" class="w-full p-3 border rounded-xl h-24">${b.description}</textarea>
+                    <label class="flex items-center"><input type="checkbox" id="eb-neg" ${b.isNegotiable ? 'checked' : ''} class="mr-2"> Negotiable</label>
+                </div>
+            `;
+            window.showModal(`Edit ${b.breed}`, body, [{
+                text: "Update",
+                fn: () => {
+                    b.price = parseInt(document.getElementById('eb-price').value);
+                    b.description = document.getElementById('eb-desc').value;
+                    b.isNegotiable = document.getElementById('eb-neg').checked;
+                    save();
+                    window.switchTab('breeds');
+                }
+            }]);
+        };
+
+        // Site/Gallery Utils
+        window.updVet = (id, f, v) => { state.vetSlides.find(s=>s.id===id)[f]=v; save(); };
+        window.delVet = (id) => { state.vetSlides = state.vetSlides.filter(s=>s.id!==id); save(); window.switchTab('site'); };
+        window.addVet = () => { state.vetSlides.push({id:Date.now().toString(), url:'', alt:'New slide'}); save(); window.switchTab('site'); };
+        
+        window.updGal = (id, f, v) => { state.galleryImages.find(g=>g.id===id)[f]=v; save(); };
+        window.delGal = (id) => { state.galleryImages = state.galleryImages.filter(g=>g.id!==id); save(); window.switchTab('gallery'); };
+        window.addGal = () => { state.galleryImages.push({id:Date.now().toString(), url:'', caption:''}); save(); window.switchTab('gallery'); };
+
+        // --- SLIDER LOGIC ---
+        function initSliders() {
+            let current = 0;
+            const slides = document.querySelectorAll('.gallery-slide');
+            if (slides.length < 2) return;
+
+            setInterval(() => {
+                slides[current].classList.replace('opacity-100', 'opacity-0');
+                current = (current + 1) % slides.length;
+                slides[current].classList.replace('opacity-0', 'opacity-100');
+            }, 5000);
+        }
+
+        // --- INIT ---
+        window.onload = () => {
+            load();
+            const route = window.location.hash.replace('#', '') || 'home';
+            window.appNavigate(route);
+        };
+    </script>
+</body>
+</html>
+
