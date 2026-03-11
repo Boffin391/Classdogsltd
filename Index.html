@@ -94,7 +94,7 @@
         .custom-bullet li::before { content: "•"; color: var(--forest-green); font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
     </style>
     <script type="application/ld+json">
- {
+        {
   "@context": "https://schema.org",
   "@type": "PetStore",
   "name": "CLASS DOGS LTD",
@@ -104,7 +104,7 @@
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Nairobi and Environs",
+    "streetAddress": "RW6M+3G Ruiru",
     "addressLocality": "Nairobi",
     "addressRegion": "Nairobi County",
     "postalCode": "00100",
@@ -132,6 +132,31 @@
     "https://t.me/dogsinkenya"
   ]
 }
+</script>
+<script window.updateBreedSchema = (breed) => 
+    {
+    document.getElementById('dynamic-breed-schema')?.remove();
+
+    const script = document.createElement('script');
+    script.id = 'dynamic-breed-schema';
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": breed.breed,
+        "image": window.resolveImageUrl(breed.images[0]),
+        "description": breed.description,
+        "brand": { "@type": "Brand", "name": "Class Dogs Ltd" },
+        "offers": {
+            "@type": "Offer",
+            "url": window.location.href,
+            "priceCurrency": "KES",
+            "price": breed.price,
+            "availability": "https://schema.org/InStock"
+        }
+    });
+    document.head.appendChild(script);
+};
 </script>
 </head>
 <body class="min-h-screen">
