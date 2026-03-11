@@ -367,6 +367,7 @@
         function renderBreedDetailsPage(breedId) {
             const breed = window.breeds.find(b => b.id == breedId);
             if (!breed) return `<div class="text-center py-20">Breed not found.</div>`;
+            window.updateBreedSchema(breed);
             return `
                 <div class="max-w-5xl mx-auto bg-white rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden mb-12">
                     <div class="grid md:grid-cols-2 gap-6 md:gap-8 p-4 md:p-10">
